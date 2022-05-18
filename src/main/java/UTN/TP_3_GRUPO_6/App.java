@@ -9,6 +9,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import Entidades.Autor;
+import Entidades.Biblioteca;
 import Entidades.Libro;
 import Entidades.Nacionalidad;
 
@@ -44,6 +45,14 @@ public class App {
 				autor);
 
 		session.save(libro);
+		
+		Biblioteca biblioteca = new Biblioteca();
+		biblioteca.setID(1);
+		biblioteca.setFechaDeAlta(new Date()); 
+		biblioteca.setEstado(1);
+		biblioteca.setLibro(libro);
+		
+		session.save(biblioteca);
 
 		session.getTransaction().commit();
 
