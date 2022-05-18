@@ -10,6 +10,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import Entidades.Autor;
 import Entidades.Biblioteca;
+import Entidades.Genero;
 import Entidades.Libro;
 import Entidades.Nacionalidad;
 
@@ -25,39 +26,41 @@ public class App {
 		Session session = sessionFactory.openSession();
 
 		session.beginTransaction();
-
+		///AUTOR
 		Autor autor = new Autor();
 		Nacionalidad nacionalidad = new Nacionalidad();
-
 		autor.setID(100);
 		autor.setNombre("Matias");
 		autor.setApellido("Vieitez");
 		autor.setvNacionalidad(1);
 		autor.setEmail("matias.vieitez@red.com");
-
 		nacionalidad.setID(1);
 		nacionalidad.setDescripcion("Argentino");
-
+		///SESION AUTOR
 		session.save(autor);
-
+		///GENERO
+		Genero genero = new Genero();
+		genero.setID(1);
+		genero.setDescripcion("Drama");
+		///SAVE GENERO
+		session.save(genero);
+		///LIBRO
 		Libro libro = new Libro("123456789", "Los Ojos del Perro Siberiano", new Date("01/03/1998"), "Español", 222,
 				"Los ojos del perro siberiano es una novela juvenil perteneciente al escritor argentino Antonio Santa Ana.",
-				autor);
-
+				genero, autor);
+		///SAVE LIBRO
 		session.save(libro);
-		
+		///BIBLIOTECA
 		Biblioteca biblioteca = new Biblioteca();
 		biblioteca.setID(1);
 		biblioteca.setFechaDeAlta(new Date()); 
 		biblioteca.setEstado(1);
 		biblioteca.setLibro(libro);
-		
+		///SAVE BIBLIOTECA
 		session.save(biblioteca);
-
+		
 		session.getTransaction().commit();
-
 		session.close();
-
 		sessionFactory.close();
 	}
 }

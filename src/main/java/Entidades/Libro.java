@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,7 +31,11 @@ public class Libro implements Serializable {
 	private int Paginas;
 	@Column(name = "Descripcion")
 	private String Descripcion;
-
+	
+	
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="ID_Genero")
+	private Genero genero;
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ID_Autor")
 	private Autor autor;
@@ -91,8 +96,18 @@ public class Libro implements Serializable {
 		this.autor = autor;
 	}
 
+	
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+
 	public Libro(String iSBN, String titulo, Date fechaLanzamiento, String idioma, int paginas, String descripcion,
-			Autor autor) {
+			Genero genero, Autor autor) {
 		super();
 		ISBN = iSBN;
 		Titulo = titulo;
@@ -100,6 +115,7 @@ public class Libro implements Serializable {
 		Idioma = idioma;
 		Paginas = paginas;
 		Descripcion = descripcion;
+		this.genero = genero;
 		this.autor = autor;
 	}
 
