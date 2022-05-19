@@ -12,5 +12,6 @@
         <property name="hbm2ddl.auto">create</property>
         <mapping class="Entidades.Autor"/>
         <mapping class="Entidades.Nacionalidad"/>
+        <mapping class="Entidades.Genero"/>
     </session-factory>
 </hibernate-configuration>
