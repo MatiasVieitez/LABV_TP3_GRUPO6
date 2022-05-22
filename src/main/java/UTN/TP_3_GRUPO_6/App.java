@@ -111,20 +111,27 @@ public class App {
 		session.save(libro5);
 
 		// BIBLIOTECA
-		Biblioteca biblioteca = new Biblioteca();
-		biblioteca.setID(1);
-		biblioteca.setFechaDeAlta(new Date());
-		biblioteca.setEstado(1);
-		biblioteca.setLibro(libro);
-
+		Biblioteca biblioteca = new Biblioteca(1, new Date(), 1, libro);
+		Biblioteca biblioteca2 = new Biblioteca(2, new Date(), 1, libro2);
+		Biblioteca biblioteca3 = new Biblioteca(3, new Date(), 2, libro3);
+		Biblioteca biblioteca4 = new Biblioteca(4, new Date(), 1, libro4);
+		Biblioteca biblioteca5 = new Biblioteca(5, new Date(), 2, libro5);
 		// ALTA BIBLIOTECA
 		session.save(biblioteca);
+		session.save(biblioteca2);
+		session.save(biblioteca3);
+		session.save(biblioteca4);
+		session.save(biblioteca5);
 		//BAJA BIBLIOTECA
 		session.delete(biblioteca);
+		//UPDATE BIBLIOTECA
+		biblioteca2.setEstado(2);
+		session.update(biblioteca2);
 		
-		//LISTADO?
-		//	Biblioteca bli=(Biblioteca)session.get(Biblioteca.class,1);
-        //  System.out.println(bli);	
+		//LISTADO
+		Biblioteca bli=(Biblioteca)session.get(Biblioteca.class,2);
+		System.out.println("BIBLIOTECA DE LA BASE");
+        System.out.println(bli.toString());	
 
 		session.getTransaction().commit();
 		session.close();

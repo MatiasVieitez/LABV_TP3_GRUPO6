@@ -32,6 +32,12 @@ public class Biblioteca implements Serializable {
 	public Biblioteca() {
 
 	}
+	public Biblioteca(Integer ID, Date fechadeAlta, Integer Estado, Libro libro) {
+		this.ID = ID;
+		this.FechaDeAlta = fechadeAlta;
+		this.Estado = Estado;
+		this.libro = libro;
+	}
 
 	public Integer getID() {
 		return ID;
@@ -63,5 +69,10 @@ public class Biblioteca implements Serializable {
 
 	public void setEstado(Integer estado) {
 		Estado = estado;
+	}
+	@Override
+	public String toString() {
+		return "Biblioteca [ID=" + ID + ", FechaDeAlta=" + FechaDeAlta + ", Estado=" + Estado + ", libro=" + libro
+				+ "]";
 	}
 }
