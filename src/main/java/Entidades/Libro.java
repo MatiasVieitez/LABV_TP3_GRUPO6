@@ -31,10 +31,9 @@ public class Libro implements Serializable {
 	private int Paginas;
 	@Column(name = "Descripcion")
 	private String Descripcion;
-	
-	
-	@ManyToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="ID_Genero")
+
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "ID_Genero")
 	private Genero genero;
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ID_Autor")
@@ -96,7 +95,6 @@ public class Libro implements Serializable {
 		this.autor = autor;
 	}
 
-	
 	public Genero getGenero() {
 		return genero;
 	}
@@ -104,7 +102,6 @@ public class Libro implements Serializable {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
-
 
 	public Libro(String iSBN, String titulo, Date fechaLanzamiento, String idioma, int paginas, String descripcion,
 			Genero genero, Autor autor) {
