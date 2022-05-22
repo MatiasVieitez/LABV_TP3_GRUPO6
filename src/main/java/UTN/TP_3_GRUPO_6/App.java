@@ -74,12 +74,20 @@ public class App {
 		Genero genero3 = new Genero();
 		genero3.setID(3);
 		genero3.setDescripcion("Terror");
-
+		Genero genero4 = new Genero();
+		genero4.setID(4);
+		genero4.setDescripcion("Comedia");
+		Genero genero5 = new Genero();
+		genero5.setID(5);
+		genero5.setDescripcion("Romantica");
+	
 		// SAVE GENERO
 		session.save(genero);
 		session.save(genero2);
 		session.save(genero3);
-
+		session.save(genero4);
+		session.save(genero5);
+        
 		// LIBRO
 		Libro libro = new Libro("123456789", "Los Ojos del Perro Siberiano", new Date("01/03/1998"), "Español", 222,
 				"Los ojos del perro siberiano es una novela juvenil perteneciente al escritor argentino Antonio Santa Ana.",
@@ -109,8 +117,14 @@ public class App {
 		biblioteca.setEstado(1);
 		biblioteca.setLibro(libro);
 
-		// SAVE BIBLIOTECA
+		// ALTA BIBLIOTECA
 		session.save(biblioteca);
+		//BAJA BIBLIOTECA
+		session.delete(biblioteca);
+		
+		//LISTADO?
+		//	Biblioteca bli=(Biblioteca)session.get(Biblioteca.class,1);
+        //  System.out.println(bli);	
 
 		session.getTransaction().commit();
 		session.close();
